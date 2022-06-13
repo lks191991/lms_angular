@@ -1,0 +1,9 @@
+.errorMsg{
+    color: #f00;
+}
+.spinnerImg{    background-repeat: no-repeat;
+    position: absolute;
+    right: 57px;
+    height: 32px;
+    line-height: 32px;
+    bottom: 53px;}

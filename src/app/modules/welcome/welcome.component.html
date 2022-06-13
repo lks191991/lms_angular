@@ -1,0 +1,346 @@
+<app-header [websiteDataLocal]="websiteDataLocal"></app-header>
+<!-- Slider Section  -->
+<section class="home_slider_section" *ngIf="sliders && sliders.length">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item {{ i == 0 ? 'active' : ''}}" *ngFor="let slider of sliders; let i = index">
+                <img [src]="imgUrl+slider.slider_image" class="d-block w-100" alt="{{ slider.name }}" />
+                <div class="carousel-caption col-md-5 text-md-start">
+                    <h2 class="font-title--lg colorWhite">{{ slider.name }}</h2>
+                    <p class="fs-20 fw-light mt-24">{{ slider.description }}</p>
+                    <a class="button button-lg button--primary text-capitalize fw-normal mt-4" href="#">Get
+                        Started</a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+<!-- Slider Section Ends -->
+
+<!-- New Course Feature Starts Here -->
+<section class="section new-course-feature" *ngIf="homeCourses && homeCourses.length">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <h2 class="font-title--md">New Online Courses</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-4 col-md-6" *ngFor="let homeCourse of homeCourses">
+                <div class="contentCard contentCard--marketing shadow-sm mb-1">
+                    <div class="contentCard-top">
+                        <a [routerLink]="'/course/details/'+homeCourse.id">
+                            <img [src]="homeCourse.banner_image ? imgUrl+homeCourse.banner_image : './assets/dist/images/courses/demo-img-04.png'" alt="images" class="img-fluid" />
+                        </a>
+                    </div>
+                    <div class="contentCard-bottom">
+                        <span class="contentCard--type">{{ homeCourse.course_type }}</span>
+                        <h5>
+                            <a [routerLink]="'/course/details/'+homeCourse.id" class="font-title--card">{{ homeCourse.name }}</a>
+                        </h5>
+                        <div class="contentCard-info d-flex align-items-center justify-content-between">
+                            <a [routerLink]="'/course/details/'+homeCourse.id" class="contentCard-user d-flex align-items-center">
+                                <img [src]="homeCourse.tutor && homeCourse.tutor.image ? imgUrl+'uploads/users/'+homeCourse.tutor.image : './assets/dist/images/avtar.png'" alt="client-image"
+                                    class="rounded-circle" style="height: 34px;width:34px" />
+                                <p class="font-para--md">{{homeCourse && homeCourse.tutor ? homeCourse.tutor.name : ''}}</p>
+                            </a>
+                            <div class="price">
+                                <span>${{ homeCourse.price }}</span>
+                            </div>
+                        </div>
+                        <div class="contentCard-more">
+                            <div class="d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="./assets/dist/images/icon/eye.png" alt="eye" />
+                                </div>
+                                <span>{{ homeCourse.total_view ? homeCourse.total_view : 0 }}</span>
+
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="./assets/dist/images/icon/book.png" alt="book" />
+                                </div>
+                                <span>{{ homeCourse.total_lesson_count ? homeCourse.total_lesson_count : 0 }} Lesson</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="icon">
+                                    <img src="./assets/dist/images/icon/clock.png" alt="clock" />
+                                </div>
+                                <span>{{ homeCourse.total_length_minutes ? homeCourse.total_length_minutes : 0 }} Minutes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <a [routerLink]="'/courses/all'" class="button button-lg button--primary mt-lg-5 mt-5">Browse all
+                    Courses</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- New Course Feature Starts Here ENDS -->
+
+<!-- Find Course with top categories -->
+<section class="section section--bg-offwhite-one find-courses-with-top-categories">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <h2 class="font-title--md">Find Course with Top Categories</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="find-courses-category-block section--bg-white">
+                    <a href="#" class="text-reset d-flex flex-wrap">
+                        <div class="find-courses-category-img">
+                            <img src="./assets/dist/images/newDesign/category1.png" alt="category" />
+                        </div>
+                        <div class="find-courses-category-cont">
+                            <h5 class="fs-20">Business</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="find-courses-category-block section--bg-white">
+                    <a href="#" class="text-reset d-flex flex-wrap">
+                        <div class="find-courses-category-img">
+                            <img src="./assets/dist/images/newDesign/category2.png" alt="category" />
+                        </div>
+                        <div class="find-courses-category-cont">
+                            <h5 class="fs-20">Networking</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="find-courses-category-block section--bg-white">
+                    <a href="#" class="text-reset d-flex flex-wrap">
+                        <div class="find-courses-category-img">
+                            <img src="./assets/dist/images/newDesign/category3.png" alt="category" />
+                        </div>
+                        <div class="find-courses-category-cont">
+                            <h5 class="fs-20">Management</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="find-courses-category-block section--bg-white">
+                    <a href="#" class="text-reset d-flex flex-wrap">
+                        <div class="find-courses-category-img">
+                            <img src="./assets/dist/images/newDesign/category4.png" alt="category" />
+                        </div>
+                        <div class="find-courses-category-cont">
+                            <h5 class="fs-20">Programming</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="find-courses-category-block section--bg-white">
+                    <a href="#" class="text-reset d-flex flex-wrap">
+                        <div class="find-courses-category-img">
+                            <img src="./assets/dist/images/newDesign/category1.png" alt="category" />
+                        </div>
+                        <div class="find-courses-category-cont">
+                            <h5 class="fs-20">Healthcare</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="find-courses-category-block section--bg-white">
+                    <a href="#" class="text-reset d-flex flex-wrap">
+                        <div class="find-courses-category-img">
+                            <img src="./assets/dist/images/newDesign/category1.png" alt="category" />
+                        </div>
+                        <div class="find-courses-category-cont">
+                            <h5 class="fs-20">Designing</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <a [routerLink]="'/courses/all'" class="button button-lg button--primary mt-lg-5 mt-5">Browse all
+                    Courses</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why choose my course  -->
+<section class="section why-choose-us-section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <h2 class="font-title--md">Why Choose My Courses?</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="why-choose-block bgShade1 shadow">
+                    <div class="why-choose-img bg-white">
+                        <img src="./assets/dist/images/newDesign/whyChoose1.png" alt="whyChoose" />
+                    </div>
+                    <div class="why-choose-cont">
+                        <h4>Many Online Courses</h4>
+                        <p class="mb-0 fw-light">Explore a variety of fresh topics</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="why-choose-block bgShade2 shadow">
+                    <div class="why-choose-img bg-white">
+                        <img src="./assets/dist/images/newDesign/whyChoose2.png" alt="whyChoose" />
+                    </div>
+                    <div class="why-choose-cont">
+                        <h4>Expert instruction</h4>
+                        <p class="mb-0 fw-light">Find the right course for you</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="why-choose-block bgShade3 shadow">
+                    <div class="why-choose-img bg-white">
+                        <img src="./assets/dist/images/newDesign/whyChoose3.png" alt="whyChoose" />
+                    </div>
+                    <div class="why-choose-cont">
+                        <h4>Lifetime access</h4>
+                        <p class="mb-0 fw-light">Learn on your schedule</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Testimonial Area Starts Here -->
+<section class="section section--bg-white" *ngIf="homeReviews && homeReviews.length">
+    <div class="container">
+        <h2 class="font-title--md text-center">
+            What My Students Says <br class="d-none d-md-block" />
+            About our Services
+        </h2>
+        <div class="testimonial testimonial--two testimonial__slider--two">
+            <owl-carousel-o [options]="reviewcustomOptions">
+                <ng-template carouselSlide *ngFor="let review of homeReviews; let i = index">
+                    <div class="testimonial__item">
+                        <ul class="testimonial__item-star d-flex align-items-center">
+                            <li *ngFor="let item of [].constructor( review.rating ); let i = index">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="feather feather-star">
+                                    <polygon
+                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                    </polygon>
+                                </svg>
+                            </li>
+                        </ul>
+                        <p class="font-para--lg" >
+                           {{review.comment}}
+                        </p>
+        
+                        <div class="testimonial__user d-flex align-items-center justify-content-lg-start">
+                            <div class="testimonial__user-info">
+                                <h6>{{review.user && review.user.name ? review.user.name : ''}}</h6>
+                                <span class="font-para--md">{{review.user && review.user.type ? review.user.type : ''}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>  
+            </owl-carousel-o>
+        </div>
+    </div>
+</section>
+<!-- Testimonial Area Starts Here ENDS -->
+
+<!--  Get Started Starts Here -->
+<section class="section get-started">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="get-started-area">
+                    <div class="get-started-item mb-4 mb-lg-0" style="max-width: 100%;">
+                        <h6 class="font-title--sm">Become an Instructor</h6>
+                        <p class="font-para--lg">
+                            Duis posuere maximus arcu eu tincidunt. Nam rutrum, nibh vitae tempus venenatis, ex
+                            tortor ultricies magna, et faucibus magna eros.
+                        </p>
+                        <a href="/tutor-register" class="green-btn d-inline-block">Apply as Instructor</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--  Get Started Starts Here ENDS -->
+
+<!-- News Letter Starts Here -->
+<section style="background-color: rgba(235, 235, 242, 0.6);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="newsletter-area">
+                    <h4 class="font-title--md">Subscribe our Newsletter</h4>
+                    <p class="mt-2 mb-lg-4 mb-3">
+                        Duis posuere maximus arcu eu tincidunt. Nam rutrum, nibh vitae tempus venenatis, ex tortor
+                        ultricies magna, et faucibus magna eros quis arcu.
+                    </p>
+                    <form>
+                        <div class="input-group">
+                            
+                            <input type="email" class="form-control border-lowBlack" placeholder="Your email" name="newsletterEmail" id="newsletterEmail" [(ngModel)]="newsletterEmail.email" required email-validator aria-required="true" />
+                            
+                            <button class="button button-lg button--primary" type="button" (click)="createNewsletter()">
+                                Subscribe
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- News Letter Starts Here Ends-->
+
+<app-footer [websiteDataLocal]="websiteDataLocal" [isWelcomeScreen]='true'></app-footer>
+<script src="./assets/src/js/jquery.min.js"></script>
+<script src="./assets/src/js/bootstrap.bundle.min.js"></script>
+<script src="./assets/src/scss/vendors/plugin/js/isotope.pkgd.min.js"></script>
+<script src="./assets/src/scss/vendors/plugin/js/jquery.magnific-popup.min.js"></script>
+<script src="./assets/src/scss/vendors/plugin/js/slick.min.js"></script>
+<script src="./assets/src/scss/vendors/plugin/js/jquery.nice-select.min.js"></script>
+<script src="./assets/src/js/app.js"></script>
+<script src="./assets/dist/main.js"></script>
+<script>
+    $(".play-button").magnificPopup({
+        type: "iframe",
+    });
+</script>
+
+
+

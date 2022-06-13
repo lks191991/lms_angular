@@ -1,0 +1,324 @@
+/************GLOBAL***************/
+
+:root {
+    --bgPrimary: #D4FFFE;
+    --bgPrimaryDark: #004EA2;
+    --borderPrimaryDark: #004EA2;
+    --bgSecondary: #e1f0ff;
+    --colorLight: #908FA5;
+    --colorYellow: #FF7A1A;
+    --borderColorPrimary: #C6E4F3;
+    --bgShade1: #F6FAFF;
+    --bgShade2: #FFF6F1;
+    --bgShade3: #EBFBFF;
+    --borderShade1: #4C7CC6;
+    --borderShade2: #FCC09C;
+    --borderShade3: #92E6FD;
+    --borderGrey: #E3E3E3;
+    --colorWhite: #fff;
+}
+
+.bgShade1 {
+    background-color: var(--bgShade1);
+    border: solid 1px var(--borderShade1);
+}
+
+.bgShade2 {
+    background-color: var(--bgShade2);
+    border: solid 1px var(--borderShade2);
+}
+
+.bgShade3 {
+    background-color: var(--bgShade3);
+    border: solid 1px var(--borderShade3);
+}
+
+.fit-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.fs-20 {
+    font-size: 20px;
+}
+
+.mt-24 {
+    margin-top: 24px;
+}
+
+.text-light-custom {
+    color: var(--colorLight);
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.colorWhite {
+    color: var(--colorWhite);
+}
+
+/************GLOBAL ENDS**********/
+/********Header**************/
+
+.navbar-brand img {
+    max-width: 146px;
+}
+
+header .cart-nav {
+    display: none;
+}
+
+/********Header Ends*********/
+
+/**********Footer*************/
+
+.footer__wrapper_logo img {
+    max-width: 277px;
+    margin-bottom: 20px;
+}
+
+/**********Footer Ends********/
+
+/***********HOME*********************/
+
+.home_slider_section .carousel-caption {
+    bottom: initial;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.home-banner-cont p {
+    padding-bottom: 35px;
+}
+
+.banner-home-custom {
+    background-color: var(--bgPrimary);
+    padding: 20px 0 0;
+    min-height: 600px;
+}
+
+.banner-home-custom::before {
+    content: '';
+    display: inline-block;
+    width: 106px;
+    height: 424px;
+    position: absolute;
+    left: 0;
+    top: 52px;
+    background: url(../dist/images/newDesign/homeBanner-left.png) no-repeat;
+    background-size: 100%;
+}
+
+.banner-home-custom::after {
+    content: '';
+    display: inline-block;
+    width: 47px;
+    height: 74px;
+    position: absolute;
+    right: 50px;
+    top: 28px;
+    background: url(../dist/images/newDesign/homeBanner-right.png) no-repeat;
+    background-size: 100%;
+}
+
+.find-courses-category-block {
+    padding: 30px;
+    border-radius: 6px;
+    border: solid 2px var(--borderColorPrimary);
+    min-height: 100%;
+}
+
+.find-courses-with-top-categories .col-md-4+.col-md-4+.col-md-4+.col-md-4 {
+    margin-top: 30px;
+}
+
+.find-courses-category-cont {
+    padding-left: 15px;
+    padding-top: 5px;
+}
+
+.find-courses-with-top-categories::after {
+    content: '';
+    display: inline-block;
+    width: 44px;
+    height: 45px;
+    position: absolute;
+    right: 3px;
+    top: -10px;
+    background: url(../dist/images/newDesign/triangleRight.png) no-repeat;
+    background-size: 100%;
+}
+
+.why-choose-block {
+    padding: 32px;
+    border-radius: 6px;
+    min-height: 100%;
+}
+
+.why-choose-img {
+    height: 91px;
+    width: 91px;
+    border-radius: 6px;
+    border: solid 1px;
+    text-align: center;
+    line-height: 71px;
+    padding: 10px;
+    margin-bottom: 32px;
+}
+
+.why-choose-block.bgShade1 .why-choose-img {
+    border-color: var(--borderShade1);
+}
+
+.why-choose-block.bgShade2 .why-choose-img {
+    border-color: var(--borderShade2);
+}
+
+.why-choose-block.bgShade3 .why-choose-img {
+    border-color: var(--borderShade3);
+}
+
+.why-choose-cont h4 {
+    margin-bottom: 12px;
+}
+
+.why-choose-us-section {
+    border-bottom: solid 1px var(--borderGrey);
+}
+
+.get-started::before {
+    content: '';
+    display: inline-block;
+    width: 94px;
+    height: 92px;
+    position: absolute;
+    left: 18px;
+    top: -25px;
+    background: url(../dist/images/shape/triangel3.png) no-repeat;
+    background-size: 100%;
+}
+
+/***********HOME ENDS****************/
+
+/**********Course Detail Page***************/
+
+.cart__includes-info ul li {
+    margin-top: 10px;
+}
+
+.rating-and-details {
+    padding-bottom: 24px;
+}
+
+.rating-and-details .icon-with-date {
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.rating-and-details .icon-with-date .icon-with-date-start {
+    margin-right: 20px;
+}
+
+.rating-and-details .icon-with-date svg {
+    margin-right: 5px;
+}
+
+
+/**********Course Detail Page ENDS**********/
+
+/************Watch*********************/
+
+.lesson-and-hour-and-comment-outer {
+    margin: 0 30px 20px;
+    padding: 15px;
+    background: var(--bgSecondary);
+    border-radius: 3px;
+}
+
+.lesson-and-hour-and-comment-outer .lesson-hours>div+div {
+    margin-left: 15px;
+}
+
+.given-rating i {
+    color: var(--colorYellow);
+    cursor: pointer;
+    font: 24px;
+}
+
+.quiz-section {
+    padding: 30px 30px 0;
+    border-top: solid 1px #ddd;
+    margin-top: 30px;
+}
+
+.questions-block .question {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.questions-block {
+    padding: 15px;
+    margin-top: 15px;
+    display: none;
+}
+
+.questions-block.show {
+    display: block;
+}
+
+.questions-block .choices {
+    padding: 25px 0px;
+}
+
+.questions-block .question .question_number {
+    height: 36px;
+    width: 36px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 100%;
+    border: solid 1px var(--borderPrimaryDark);
+    line-height: 36px;
+    margin-right: 5px;
+}
+
+.questions-block .choices .form-check {
+    padding: 0;
+    border: solid 1px #ddd;
+    border-radius: 4px;
+    position: relative;
+}
+
+.questions-block .choices .form-check input {
+    margin: 0;
+    position: absolute;
+    top: 18px;
+    left: 15px;
+}
+
+.questions-block .choices .form-check+.form-check {
+    margin-top: 10px;
+}
+
+.questions-block .choices .form-check label {
+    padding: 15px 15px 15px 40px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.questions-block .choices .form-check.checked {
+    border-color: var(--borderShade1);
+    background: var(--bgShade1);
+}
+
+.next-prev-submit button[type="submit"] {
+    display: none;
+}
+
+.prev-btn[disable="disable"] {
+    opacity: .6;
+    pointer-events: none;
+}
+
+/************Watch Ends*****************/

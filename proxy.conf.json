@@ -1,0 +1,15 @@
+{
+  "/*": {
+     "target":  {
+       "host": "eu1.niceincontact.com",
+       "protocol": "https:"
+     },
+     "headers": {
+      "Connection": "keep-alive",
+      "pwnnnnnnnnn": "keep-alive"
+      },
+     "secure": true,
+     "changeOrigin": true,
+     "logLevel": "info"
+  }
+}

@@ -1,0 +1,80 @@
+<app-header [websiteDataLocal]="websiteDataLocal"></app-header>
+<!-- Breadcrumb Starts Here -->
+<div class="py-0">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb align-items-center bg-transparent mb-0">
+                <li class="breadcrumb-item"><a href="/" class="fs-6 text-secondary">Home</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)" class="fs-6 text-secondary">Cart</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Breadcrumb Ends Here -->
+
+<!-- Cart Section Starts Here -->
+<section class="section cart-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h6 class="cart-area__label">Checkout</h6>
+                <div class="cart-wizard-area">
+                    <div class="image">
+                        <img [src]="courseData && courseData.banner_image ? imgUrl+courseData.banner_image : './assets/dist/images/no-image.jpg'"
+                            alt="Instructor" />
+                    </div>
+                    <div class="text">
+                        <h6><a [routerLink]="'/course/details/'+courseData.id">{{courseData && courseData.name ?
+                                courseData.name : ''}}</a></h6>
+                        <div class="bottom-wizard d-flex justify-content-between align-items-center">
+                            <p>
+                                ${{courseData && courseData.price ? courseData.price : 0}} <span></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <h6 class="cart-area__label">Summery</h6>
+                <div class="summery-wizard">
+                    <div class="summery-wizard-text pt-0">
+                        <h6>Subtotal</h6>
+                        <p>${{checkoutData && checkoutData.price ? checkoutData.price : 0}}</p>
+                    </div>
+                    <div class="summery-wizard-text">
+                        <h6>Coupon Discount</h6>
+                        <p>${{checkoutData && checkoutData.discount ? checkoutData.discount : 0}}</p>
+                    </div>
+                    <!-- <div class="summery-wizard-text">
+                        <h6>taxes</h6>
+                        <p>9.99</p>
+                    </div> -->
+                    <div class="total-wizard">
+                        <h6 class="font-title--card">Total:</h6>
+                        <p class="font-title--card">${{checkoutData && checkoutData.price ? checkoutData.price : 0}}</p>
+                    </div>
+                    <form action="javascript:void(0)">
+                        <a href="javascript:void(0)" class="button button-lg button--primary form-control mb-lg-3"
+                            (click)="pay()">Checkout </a>
+                        <label for="coupon">Apply Coupon</label>
+                        <div class="cart-input">
+                            <input type="text" class="form-control" placeholder="Coupon Code" name="coupon" id="coupon"
+                                [(ngModel)]="coupon" />
+                            <button type="button" class="sm-button" (click)="applyCoupon(true)">Apply</button>
+                            <a href="javascript:void(0)" *ngIf="couponApplied" (click)="applyCoupon(false)">Remove
+                                Coupon</a>
+                            <span class="errorMsg d-block w-100 alert alert-danger mt-2" *ngIf="emptyCoponError">Please
+                                enter
+                                coupon code.</span>
+                            <span class="errorMsg d-block w-100 alert alert-danger mt-2"
+                                *ngIf="couponErrorMsg != ''">{{couponErrorMsg}}</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Cart Section Ends Here -->
+<app-footer [websiteDataLocal]="websiteDataLocal"></app-footer>

@@ -1,0 +1,22 @@
+<div class="open-more-options functional-option-block font-calibri" role="dialog" aria-label="dialog" tabindex="0">
+    <a href="javascript:void(0);" title="Cancel" aria-label="Cancel"><i class="icon-close-dark" aria-hidden="true"></i></a>
+    <ul class="m-0 p-0">
+        <li>
+            <a href="javascript:void(0)" title="Send Transcript" aria-label="Send Transcript" (click)="sendTranscript()"><i class="icon-mail" aria-hidden="true"></i>Send Transcript</a>
+        </li>
+        <!-- <li>
+            <a href="#" title="Mute" aria-label="Mute"><i class="icon-mute" aria-hidden="true"></i>Mute</a>
+        </li> -->
+    </ul>
+</div>
+<div class="end-chat-block functional-option-block font-calibri text-center" role="dialog" aria-label="dialog" tabindex="0">
+    <a href="javascript:void(0);" title="Cancel" aria-label="Cancel"><i class="icon-close-dark" aria-hidden="true"></i></a>
+    <div class="end-chat-block-cnt">
+        <i class="icon-exit" aria-hidden="true"></i>
+        <p title="Are you sure you want to close this chat & send the transcript over email?">Are you sure you <br />want to close this chat & send the transcript over email?  </p>
+        
+        <a href="javascript:void(0)" class="btn-primary font-calibri d-inline-block" title="Yes, send the transcript" aria-label="Yes, send the transcript" (click)="closeChat(true)">Yes, send the transcript</a>
+        <a href="javascript:void(0)" class="font-calibri btn-danger d-inline-block" title="No, close chat" aria-label="No, close chat" (click)="closeChat(false)">No, close chat</a>
+    </div>
+
+</div>

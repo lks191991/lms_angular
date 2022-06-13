@@ -1,0 +1,103 @@
+<app-header [websiteDataLocal]="websiteDataLocal"></app-header>
+<!-- Play quiz section -->
+
+<section class="play_quiz_section section--bg-offwhite-three section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+
+                <div class="white_bg_box shadow" *ngIf="quickQuizs && quickQuizs.length && !isShowQuizResultpage">
+                    <div class="page_heading">
+                        <h1 class="fw-bold text-center mt-3 mb-5">Play quiz</h1>
+                    </div>
+                    <form id="playQuizForm" action="quiz-thankyou.html">
+                        <!-- progressbar -->
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                aria-valuemin="0" aria-valuemax="100" [style.width]='questionSubmited' #someVar></div>
+                        </div> <br> <!-- fieldsets -->
+                        <fieldset id="quiz-feildset--1" [ngClass]="{'review_answers_fieldset': isLast}" *ngFor="let quiz of quickQuizs ; first as isFirst; last as isLast; let i = index">
+                            <div
+                                class="question_numbers_and_time_counter alert alert-warning d-flex flex-wrap justify-content-between align-items-center">
+                                <div class="countdown_outer">
+                                    <span class="time_remaining_text">Time remaining</span>
+                                    <div class="countdown">{{timer2}}</div>
+                                </div>
+                                <div class="question_numbers_outer">
+                                    <span class="current_question_number">Q{{ i+1 }}</span>/<span
+                                        class="total_question_number">Q{{quickQuizs.length}}</span>
+                                </div>
+                            </div>
+                            <div class="questions-block">
+                                <div class="question d-flex flex-wrap">
+                                    <span class="question_number">{{ i+1 }}</span> <span class="question_text">{{quiz.question}}</span>
+                                </div>
+                                <div class="choices">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="question{{quiz.id}}"
+                                            id="answer_{{quiz.id}}_ans1" [(ngModel)]="quiz.answer"  [value]="answerA">
+                                        <label class="form-check-label" for="answer_{{quiz.id}}_ans1">
+                                           A. {{quiz.ans1}}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="question{{quiz.id}}"
+                                            id="answer_{{quiz.id}}_ans2" [(ngModel)]="quiz.answer"  [value]="answerB">
+                                        <label class="form-check-label" for="answer_{{quiz.id}}_ans2">
+                                           B. {{quiz.ans2}}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="question{{quiz.id}}"
+                                            id="answer_{{quiz.id}}_ans3" [(ngModel)]="quiz.answer"  [value]="answerC">
+                                        <label class="form-check-label" for="answer_{{quiz.id}}_ans3">
+                                           C. {{quiz.ans3}}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="question{{quiz.id}}"
+                                            id="answer_{{quiz.id}}_ans4" [(ngModel)]="quiz.answer" [value]="answerD">
+                                        <label class="form-check-label" for="answer_{{quiz.id}}_ans4">
+                                           D. {{quiz.ans4}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="next_step_quiz_btn d-flex flex-wrap justify-content-end">
+                                <input type="button" name="next"
+                                    class="button button--primary next_step_quiz action-button" value="{{isLast?'Finish':'Next'}}" (click)="playQuiz(isLast?true:false,i)">
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="white_bg_box shadow" *ngIf="isShowQuizResultpage">
+                    <div class="page_heading">
+                        <h1 class="fw-bold text-center mt-3 mb-2">Thank You</h1>
+                        <p class="text-muted text-center" *ngIf="quizResult && quizResult.percent > 40">You did a Great Job! We are showing your score below.</p>
+                        <p class="text-muted text-center" *ngIf="quizResult && quizResult.percent <= 40">You should need more practice.</p>
+                    </div>
+                    <div class="scoreboard_outer d-flex flex-wrap justify-content-center align-items-center">
+                        <div class="showing_percentage">
+                            <small class="d-block text-md-start text-center">You Scored</small>
+                            <span class="percentage_scored d-block fw-bold text-success">{{quizResult && quizResult.percent ? quizResult.percent : 0}}%</span>
+                        </div>
+                        <div class="correct_n_incorrect_outer">
+                            <div class="correct_questions alert alert-success text-center">
+                                <span>Total corrected questions</span>
+                                <span class="d-block fw-bold">{{quizResult && quizResult.total_right_ans ? quizResult.total_right_ans : 0}}</span>
+                            </div>
+                            <div class="incorrect_questions alert alert-danger text-center">
+                                <span>Total in-corrected questions</span>
+                                <span class="d-block fw-bold">{{quizResult && quizResult.total_wrong_ans ? quizResult.total_wrong_ans : 0}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Play quiz section Ends -->
+<app-footer [websiteDataLocal]="websiteDataLocal"></app-footer>
+
