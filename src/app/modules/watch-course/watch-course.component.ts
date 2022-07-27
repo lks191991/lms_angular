@@ -46,6 +46,7 @@ export class WatchCourseComponent implements OnInit {
   public isLiked = 0;
   public isFlaged = 0;
   public myFavVideos:any = [];
+  public videoWatchHistory:any = {};
   constructor(
     
     private activatedRoute: ActivatedRoute,
@@ -85,8 +86,21 @@ export class WatchCourseComponent implements OnInit {
               setTimeout(()=>{
                 if(activeVideoData != ""){
                   this.currentVimeoId = this.getVimeoId(activeVideoData.video_url);
-                  this.watchVideo(activeVideoData.video_url);
-                  this.playVideo(activeVideoData);
+                  this.DefaultService.getVideoWatchHistory({video_id:activeVideoData.id}).subscribe((outputRes)=>{
+                    if(outputRes && outputRes.success){
+                      this.videoWatchHistory = outputRes.data;
+                      let startFrom = 0;
+                      if(outputRes.data && outputRes.data.video_watch_report && outputRes.data.video_watch_report.seconds){
+                        startFrom = Number(outputRes.data.video_watch_report.seconds);
+                        this.watchVideo(activeVideoData.video_url,startFrom);
+                        this.playVideo(activeVideoData);
+                      }else{
+                        this.watchVideo(activeVideoData.video_url,startFrom);
+                        this.playVideo(activeVideoData);
+                      }
+                    }
+                  })
+                  
                   let updateVideoData = {
                     video_id : activeVideoData.id
                   }
@@ -105,8 +119,22 @@ export class WatchCourseComponent implements OnInit {
                   })
                 }else{
                   this.currentVimeoId = this.getVimeoId(this.courseData.topics[0].topic_videos[0].video_url);
-                  this.watchVideo(this.courseData.topics[0].topic_videos[0].video_url);
-                  this.playVideo(this.courseData.topics[0].topic_videos[0]);
+                  this.DefaultService.getVideoWatchHistory({video_id:activeVideoData.id}).subscribe((outputRes)=>{
+                    if(outputRes && outputRes.success){
+                      this.videoWatchHistory = outputRes.data;
+                      let startFrom = 0;
+                      if(outputRes.data && outputRes.data.video_watch_report && outputRes.data.video_watch_report.seconds){
+                        startFrom = Number(outputRes.data.video_watch_report.seconds);
+                        this.watchVideo(this.courseData.topics[0].topic_videos[0].video_url,startFrom);
+                        this.playVideo(this.courseData.topics[0].topic_videos[0]);
+                      }else{
+                        this.watchVideo(this.courseData.topics[0].topic_videos[0].video_url,startFrom);
+                        this.playVideo(this.courseData.topics[0].topic_videos[0]);
+                      }
+                    }
+                  })
+                  //this.watchVideo(this.courseData.topics[0].topic_videos[0].video_url);
+                  //this.playVideo(this.courseData.topics[0].topic_videos[0]);
                   let updateVideoData = {
                     video_id : this.courseData.topics[0].topic_videos[0].id
                   }
@@ -127,7 +155,7 @@ export class WatchCourseComponent implements OnInit {
               },1000)
             }else{
               this.currentVimeoId = this.getVimeoId(this.courseData.topics[0].topic_videos[0].video_url);
-              this.watchVideo(this.courseData.topics[0].topic_videos[0].video_url);
+              this.watchVideo(this.courseData.topics[0].topic_videos[0].video_url,0);
               this.playVideo(this.courseData.topics[0].topic_videos[0]);
               let updateVideoData = {
                 video_id : this.courseData.topics[0].topic_videos[0].id
@@ -349,6 +377,11 @@ export class WatchCourseComponent implements OnInit {
     this.DefaultService.addtoWishlist(sendData).subscribe((data)=>{
       this.isLoading = false
       if(data && data.success){
+        if(data && data.data && data.data.user_id){
+          this.videoWatchHistory.favourite = 1
+        }else{
+          this.videoWatchHistory = {}
+        }
         this.toastr.success(data.message);
       }
     },
@@ -372,44 +405,82 @@ export class WatchCourseComponent implements OnInit {
         console.log("this.quizScoreShow",this.quizScoreShow)
       }
     })
-    this.watchVideo(data.video_url);
+    this.DefaultService.getVideoWatchHistory(quizParam).subscribe((outputRes)=>{
+      if(outputRes && outputRes.success){
+        this.videoWatchHistory = outputRes.data;
+        let startFrom = 0;
+        if(outputRes.data && outputRes.data.video_watch_report && outputRes.data.video_watch_report.seconds){
+          startFrom = Number(outputRes.data.video_watch_report.seconds);
+        }
+        console.log("this.videoWatchHistory",startFrom)
+        this.watchVideo(data.video_url,startFrom);
+      }
+    })
+    
     this.DefaultService.wishlistFlaggedDetails({video_id:data.id}).subscribe((dataRes)=>{
       this.isLiked = dataRes.data.favourite
       this.isFlaged = dataRes.data.flag
-      console.log("this.isFlaged",this.isFlaged)
     })
   }
-  watchVideo(videoUrl:string){
-    console.log(videoUrl)
+  watchVideo(videoUrl:string,startFrom:any){
+    console.log("videoUrl",videoUrl)
     let videoId:any = this.getVimeoId(videoUrl);
-    console.log(videoId)
+    console.log("videoId",videoId)
     this.currentVimeoId = videoId;
+    this.vimeoPlayer(videoId,startFrom);
+  }
+  vimeoPlayer(videoId:any,startFrom:any){
+    var myDiv:any = document.getElementById("myDivID");
+    myDiv.innerHTML = "";//remove all child elements inside of myDiv
+    console.log("startFrom",startFrom)
     if (this.player) {
       this.player.destroy();
     }
-    this.player = new Player(this.playerContainer.first.nativeElement, {
+    if(this.playerContainer && this.playerContainer.first){
+      try{
+      this.player = new Player(this.playerContainer.first.nativeElement, {
         id: videoId,
+        autoplay : true,
         //width: 750,
         //height: 450,
-        responsive: true
-    });
-    this.player.on('destroy', function() {
-      console.log('destroy the video!');
-    })
-    this.player.on('play', function() {
-        console.log('played the video!');
-    });
-    this.player.on('progress', (data) => {
-      let updateVideoData = {
-        course_id : this.courseId,
-        video_id : this.playingVideoData.id,
-        seconds : data.seconds,
-        percent : data.percent,
-        duration : data.duration,
+        responsive: true,
+      });
+      this.player.pause();
+      setTimeout(()=>{
+       
+        if(startFrom){
+          this.player?.setCurrentTime(startFrom);
+          //this.player?.setCurrentTime(40);
+        }
+        this.player?.on('destroy', function() {
+          console.log('destroy the video!');
+        })
+        this.player?.on('play', (data) =>
+        {
+        
+         
+            console.log('played the video!');
+        });
+        this.player?.on('error', function() {
+          console.log("error occured")
+        })
+        this.player?.on('progress', (data) => {
+          let updateVideoData = {
+            course_id : this.courseId,
+            video_id : this.playingVideoData.id,
+            seconds : data.seconds,
+            percent : data.percent,
+            duration : data.duration,
+          }
+          this.DefaultService.updateVideoProgress(updateVideoData).subscribe((data)=>{})
+          console.log('progress the video!',data);
+        });
+      },2000)
+      }catch(error){
+        console.log(78787878787)
       }
-      this.DefaultService.updateVideoProgress(updateVideoData).subscribe((data)=>{})
-      console.log('progress the video!',data);
-    });
+      
+    }
   }
   getVimeoId( url:string ) {
     // Look for a string with 'vimeo', then whatever, then a

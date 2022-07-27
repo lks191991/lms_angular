@@ -60,15 +60,18 @@ export class WelcomeComponent implements OnInit {
     navText: ['', ''],
     responsive: {
       0: {
-        items: 3
+        items: 1
       },
       400: {
-        items: 3
+        items: 1
       },
       740: {
-        items: 3
+        items: 2
       },
       940: {
+        items:3
+      },
+	  1000: {
         items:3
       }
     },

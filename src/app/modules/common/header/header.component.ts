@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
     if(this.auth.isLoggedIn){
       this.userLoggedIn = true
       this.userData = this.auth.getCurrentAuthUser;
+      console.log(this.userData)
     }
     this.defaultService.getMenuItems("").subscribe((data)=>{
       if(data && data.success){
@@ -50,6 +51,13 @@ export class HeaderComponent implements OnInit {
     //this.router.navigate(['/courses/all/'+this.publicSearchValue])
     window.location.href = '/courses/all/'+this.publicSearchValue
   }
-  
+  status: boolean = false;
+  clickEvent(){
+      this.status = !this.status;       
+  }
+  statusMenu: boolean = false;
+  openCloseMenu(){
+      this.statusMenu = !this.statusMenu;       
+  }
 
 }

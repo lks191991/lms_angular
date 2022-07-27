@@ -516,4 +516,85 @@ div:not(.active)>.showOnActive {
     margin-top: 10px;
 }
 
+.closePopup, .closePopup:hover {
+    background: var(--bgPrimary);
+    height: 34px;
+    width: 34px;
+    font-size: 20px;
+    padding: 0;
+    border-radius: 100%;
+    position: absolute;
+    opacity: 1;
+    right: -15px;
+    top: -19px;
+}
+
+#VideoModal .modal-content {
+    background: transparent;
+    min-height: 460px;
+}
+
+#VideoModal .modal-content .modal-body {
+    height: 100%;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.75);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.playBtn {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    font-size: 35px;
+    text-align: center;
+    line-height: 80px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    transform: translateY(-50%) translateX(-50%);
+    border-radius: 50%;
+    color: var(--colorWhite);
+    background: var(--bgPrimaryDark);
+    border: 0;
+}
+
+.playBtn::after, .playBtn::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+    transition: 0.5s;
+    border-radius: 50%;
+    border: 1px solid var(--borderPrimaryDark);
+    animation: ripple 2s linear infinite;
+}
+
+.playBtn::after {
+    animation: ripple 3s linear infinite;
+}
+
+.about_us_video_cont img {
+    transition: .3s !important;
+}
+
+.about_us_video_cont:hover img {
+    transform: scale3d(1.1,1.1,1.1);
+}
+
 /***************Implement Changes ENDS*************/

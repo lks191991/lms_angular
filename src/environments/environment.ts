@@ -4,9 +4,19 @@
 
 export const environment = {
   production: false,
+  
+  //Server One
   url: 'https://civil.learnersquare.com/api/',
   base_api: 'https://civil.learnersquare.com/api/',
   base_url: 'https://civil.learnersquare.com/',
+  
+  //Server two
+  //url: 'https://admin.bhilearning.com/api/',
+  //base_api: 'https://admin.bhilearning.com/api/',
+  //base_url: 'https://admin.bhilearning.com/',
+  
+  
+  //Local
   // url: 'http://local.lms.com/api/',
   // base_api: 'http://local.lms.com/api/',
   // base_url: 'http://local.lms.com/',

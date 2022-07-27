@@ -135,6 +135,14 @@ export class DefaultService {
         return res
       }))
   }
+  getVideoWatchHistory(data:any): Observable<any> {
+    data = convertData(data);
+    return this.http.post<any>(this.baseApi+'favorite-flag',data,this.httpOptions)
+      .pipe(map((res:any)=>{
+        
+        return res
+      }))
+  }
   myFavorites(): Observable<any> {
     return this.http.post<any>(this.baseApi+'my-favorites',{},this.httpOptions)
       .pipe(map((res:any)=>{

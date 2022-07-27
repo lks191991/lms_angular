@@ -29,6 +29,7 @@ export class UserProfileComponent implements OnInit {
   public userProfilePic = '';
   public transactions:any = []
   public myCourses:any = []
+  public completedCourses:any = []
 
   public totalRecordsMyCourse = 0
   public totalPageMyCourse = 0
@@ -38,7 +39,7 @@ export class UserProfileComponent implements OnInit {
 
   public myFavVideos:any = []
   public myQuizHistory:any = []
-
+  public isLoading = false;
   constructor(
     private register: RegisterService,
     private auth: AuthService,
@@ -73,6 +74,10 @@ export class UserProfileComponent implements OnInit {
           }
         })
       });
+      this.auth.getCompletedCourses().subscribe((data)=>{
+        this.completedCourses = data.data;
+        
+      });
       this.DefaultService.myFavorites().subscribe((data)=>{
         if(data && data.success){
           this.myFavVideos = data.data.data
@@ -89,6 +94,31 @@ export class UserProfileComponent implements OnInit {
   
   ngOnInit(): void {
  
+  }
+
+  addtoWishlist(course_id:any,video_id:any){
+    this.isLoading = true
+    let sendData = {
+      video_id : video_id,
+      course_id : course_id,
+    }
+    this.DefaultService.addtoWishlist(sendData).subscribe((data)=>{
+      this.isLoading = false
+      if(data && data.success){
+        this.toastr.success(data.message);
+        this.DefaultService.myFavorites().subscribe((dataFav)=>{
+          if(dataFav && dataFav.success){
+            this.myFavVideos = dataFav.data.data
+          }
+        })
+      }
+    },
+    (error) => {
+      this.isLoading = false
+      console.log(error)
+      this.toastr.error(error);
+    });
+    
   }
 
   logout(){

@@ -190,4 +190,20 @@
 
     /*****************QUIZ PAGE ENDS************/
 
+    /***********************IMPLEMENT AFTER CHANGES**********************/
+
+    #VideoModal .modal-content {
+        min-height: 300px;
+    }
+    
+    #VideoModal .modal-content iframe {
+        height: 300px;
+    }
+    
+    .closePopup {
+        right: -5px;
+    }
+
+    /***********************IMPLEMENT AFTER CHANGES ENDS*****************/
+
 }

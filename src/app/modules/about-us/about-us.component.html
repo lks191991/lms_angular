@@ -17,7 +17,7 @@
 <!-- Breadcrumb Ends Here -->
 
 <!-- About Intro Starts Here -->
-<section class="about-intro section">
+<section class="about-intro section test">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-12">
@@ -31,5 +31,33 @@
         </div>
     </div>
 </section>
+
+<section class="about_us_video_section section section--bg-offwhite-one">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="about_us_video_cont position-relative">
+                    <img src="assets/dist/images/video-img1.jpg" alt="video-img1" />
+                    <button type="button" class="playBtn" data-bs-toggle="modal" data-bs-target="#VideoModal">
+                        <i class="fa-solid fa-play"></i>
+                      </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="VideoModal" tabindex="-1" aria-labelledby="VideoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-body position-relative p-0">
+            <button type="button" class="btn-close closePopup" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+          <iframe src="https://www.youtube.com/embed/-sfMwZ3dJPw?autoplay=1" frameborder="0" class="w-100" height="460"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <!-- About Intro Ends Here -->
 <app-footer [websiteDataLocal]="websiteDataLocal" [isWelcomeScreen]='true'></app-footer>

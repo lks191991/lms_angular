@@ -111,6 +111,7 @@ export class AuthService {
           let user = {
             email : res.data.email,
             name : res.data.name,
+            image : res.data.image,
           };
           localStorage.setItem('current_user', JSON.stringify(user));
           localStorage.setItem('auth_token', tokenResponse.access_token);
@@ -242,6 +243,13 @@ export class AuthService {
   getMyCourses(): Observable<any> {
     let token = this.getAuthToken;
     return this.http.post<any>(this.baseApi+'my-courses', this.httpOptions)
+      .pipe(map((res:any)=>{
+        return res
+      }))
+  }
+  getCompletedCourses(): Observable<any> {
+    let token = this.getAuthToken;
+    return this.http.post<any>(this.baseApi+'my-completed-courses', this.httpOptions)
       .pipe(map((res:any)=>{
         return res
       }))

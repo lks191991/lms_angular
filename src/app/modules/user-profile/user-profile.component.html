@@ -113,14 +113,14 @@
                                     <div class="contentCard-info d-flex align-items-center justify-content-between">
 
                                         <div class="contentCard-course--status d-flex align-items-center">
-                                            <span class="percentage">0%</span>
+                                            <span class="percentage">{{((homeCourse.video_watch_report_count/homeCourse.course.total_video_sum)*100).toFixed(0)}}%</span>
                                             <p>Finish</p>
                                         </div>
                                     </div>
                                     <a class="button button-md button--primary-outline w-100 my-3"
                                         [routerLink]="'/course/watch/'+homeCourse.course_id">Watch Course</a>
                                     <div class="contentCard-watch--progress">
-                                        <span class="percentage" style="width: 0%;"></span>
+                                        <span class="percentage" style="width: {{((homeCourse.video_watch_report_count/homeCourse.course.total_video_sum)*100).toFixed(0)}}%;"></span>
                                     </div>
                                 </div>
                             </div>
@@ -180,7 +180,16 @@
                                                 [routerLink]="'/course/watch/'+favVideo.course_id+'/'+favVideo.video_id">Watch
                                                 Video</a>
                                         </dl>
+                                        
                                     </div>
+                                </div>
+                                <div class="purchase-area-close">
+                                    <a href="javascript:void(0)"  (click)="addtoWishlist(favVideo.course_id,favVideo.video_id)">
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11 1L1 11" stroke="#F15C4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M1 1L11 11" stroke="#F15C4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +199,7 @@
                 <div class="tab-pane fade" id="nav-completedcourses" role="tabpanel"
                     aria-labelledby="nav-completedcourses-tab">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 col-md-6 mb-4" *ngFor="let homeCourse of myCourses">
+                        <div class="col-lg-4 col-md-6 col-md-6 mb-4" *ngFor="let homeCourse of completedCourses">
                             <div class="contentCard contentCard--watch-course">
                                 <div class="contentCard-top">
                                     <a [routerLink]="'/course/details/'+homeCourse.course_id"><img
@@ -203,21 +212,11 @@
                                             class="font-title--card">{{ homeCourse && homeCourse.course &&
                                             homeCourse.course.name ? homeCourse.course.name : '' }}</a>
                                     </h5>
-                                    <div class="contentCard-info d-flex align-items-center justify-content-between">
-
-                                        <div class="contentCard-course--status d-flex align-items-center">
-                                            <span class="percentage">100%</span>
-                                            <p>Finish</p>
-                                        </div>
-                                    </div>
-                                    <a class="button button-md button--primary-outline w-45 my-3"
-                                        [routerLink]="'/play_quiz/'+homeCourse.course_id" style="margin-right: 5%;">Play
-                                        Quiz</a>
-                                    <a class="button button-md button--primary-outline w-45 my-3"
-                                        [routerLink]="'/course/watch/'+homeCourse.course_id">Certificate</a>
-                                    <div class="contentCard-watch--progress">
-                                        <span class="percentage" style="width: 100%;"></span>
-                                    </div>
+                                    
+                                    <a class="button button-md button--primary-outline w-100 my-3" [routerLink]="'/play_quiz/'+homeCourse.course.id" style="margin-right: 5%;">Play Quiz</a>
+                                    <!--<a class="button button-md button--primary-outline w-45 my-3"
+                                        [routerLink]="'/course/watch/'+homeCourse.course_id">Certificate</a>-->
+                                    
                                 </div>
                             </div>
                         </div>
