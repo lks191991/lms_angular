@@ -15,7 +15,7 @@ $(document).ready(function () {
         $(".prev-btn").removeAttr("disable");
 
         if (lastElement) {
-            $('.next-btn').hide();
+            //$('.next-btn').hide();
             $('.next-prev-submit button[type="submit"]').show();
             return;
         }

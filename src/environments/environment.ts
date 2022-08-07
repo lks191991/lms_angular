@@ -6,14 +6,14 @@ export const environment = {
   production: false,
   
   //Server One
-  url: 'https://civil.learnersquare.com/api/',
-  base_api: 'https://civil.learnersquare.com/api/',
-  base_url: 'https://civil.learnersquare.com/',
+  //url: 'https://civil.learnersquare.com/api/',
+  //base_api: 'https://civil.learnersquare.com/api/',
+  //base_url: 'https://civil.learnersquare.com/',
   
   //Server two
-  //url: 'https://admin.bhilearning.com/api/',
-  //base_api: 'https://admin.bhilearning.com/api/',
-  //base_url: 'https://admin.bhilearning.com/',
+  url: 'https://admin.bhilearning.com/api/',
+  base_api: 'https://admin.bhilearning.com/api/',
+  base_url: 'https://admin.bhilearning.com/',
   
   
   //Local
