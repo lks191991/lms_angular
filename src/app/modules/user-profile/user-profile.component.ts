@@ -95,6 +95,13 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
  
   }
+  calculatePercentView(countA:any,countB:any){
+    if(countA && countA > 0){
+      return ((countA/countB)*100).toFixed(0)
+    }else {
+      return 0
+    }
+  }
 
   addtoWishlist(course_id:any,video_id:any){
     this.isLoading = true

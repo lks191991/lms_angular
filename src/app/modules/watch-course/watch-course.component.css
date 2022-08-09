@@ -1,0 +1,12 @@
+.newError{
+    font-size: 12px;
+    position: relative;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #fbcec9;
+    border-radius: 0.25rem;
+    color: #91372e;
+    background-color: #fcdedb;
+    width: 100%;
+    margin-top: 10px;
+}

@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
     if(this.auth.isLoggedIn){
       this.userLoggedIn = true
       this.userData = this.auth.getCurrentAuthUser;
-      console.log(this.userData)
+      //console.log(this.userData)
     }
     this.defaultService.getMenuItems("").subscribe((data)=>{
       if(data && data.success){

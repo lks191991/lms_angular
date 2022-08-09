@@ -41,7 +41,7 @@ export class FooterComponent implements OnInit {
       if(this.router.url == '/'){
         this.footerCLsss = 'footer--two'
       }
-      console.log("this.router.url",this.router.url)
+      //console.log("this.router.url",this.router.url)
       
 
     }

@@ -10,14 +10,26 @@ $(document).ready(function () {
         e.preventDefault();
         let displayedItem = $("div.questions-block[class*='show']");
         let lastElement = displayedItem.next(".questions-block.last").length > 0;
-        displayedItem.removeClass("show");
-        displayedItem.next(".questions-block").addClass("show");
-        $(".prev-btn").removeAttr("disable");
-
-        if (lastElement) {
-            //$('.next-btn').hide();
-            $('.next-prev-submit button[type="submit"]').show();
-            return;
+        let choicesBlock = $(displayedItem).find('div.choices').find('input');
+        let atleastOneChecked = false;
+        $.each(choicesBlock, function (i,data) {
+            if ($(data).is(":checked")) {
+                atleastOneChecked = true;
+            }
+        })
+        if(!atleastOneChecked){
+            $(displayedItem).find('.errorMsg').css({display:'block'})
+        }else{
+            $(displayedItem).find('.errorMsg').css({display:'none'})
+            displayedItem.removeClass("show");
+            displayedItem.next(".questions-block").addClass("show");
+            $(".prev-btn").removeAttr("disable");
+    
+            if (lastElement) {
+                $('.next-btn').hide();
+                $('.next-prev-submit button[type="submit"]').show();
+                return;
+            }
         }
     });
 

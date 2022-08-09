@@ -27,10 +27,10 @@ export class LoaderInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let splittedData = req.url.split('/');
     if(!doNotLoadArr.includes(splittedData[splittedData.length-1])){
-      console.log("req",splittedData[splittedData.length-1])
+      //console.log("req",splittedData[splittedData.length-1])
       this.requests.push(req);
 
-    console.log("No of requests--->" + this.requests.length);
+    //console.log("No of requests--->" + this.requests.length);
 
     this.loaderService.isLoading.next(true);
     return Observable.create((observer:any) => {

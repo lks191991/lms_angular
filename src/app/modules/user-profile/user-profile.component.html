@@ -113,14 +113,14 @@
                                     <div class="contentCard-info d-flex align-items-center justify-content-between">
 
                                         <div class="contentCard-course--status d-flex align-items-center">
-                                            <span class="percentage">{{((homeCourse.video_watch_report_count/homeCourse.course.total_video_sum)*100).toFixed(0)}}%</span>
+                                            <span class="percentage">{{calculatePercentView(homeCourse.video_watch_report_count,homeCourse.course.total_video_sum)}}%</span>
                                             <p>Finish</p>
                                         </div>
                                     </div>
                                     <a class="button button-md button--primary-outline w-100 my-3"
                                         [routerLink]="'/course/watch/'+homeCourse.course_id">Watch Course</a>
                                     <div class="contentCard-watch--progress">
-                                        <span class="percentage" style="width: {{((homeCourse.video_watch_report_count/homeCourse.course.total_video_sum)*100).toFixed(0)}}%;"></span>
+                                        <span class="percentage" style="width: {{calculatePercentView(homeCourse.video_watch_report_count,homeCourse.course.total_video_sum)}}%;"></span>
                                     </div>
                                 </div>
                             </div>

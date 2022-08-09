@@ -8,7 +8,7 @@
                 </a>
                 <div class="topic-info">
                     <div class="topic-info-arrow">
-                        <a href="javascript:void(0)">
+                        <a href="/user-profile">
                             <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15.5 19.5L8.5 12.5L15.5 5.5" stroke="currentColor" stroke-width="2"
@@ -281,12 +281,13 @@
                                                 D. {{quiz.ans4}}
                                             </label>
                                         </div>
+                                        <span class="errorMsg newError" style="display: none">Please choose one option</span>
                                     </div>
                                 </div>
                                 <div class="next-prev-submit d-flex flex-wrap justify-content-between">
                                     <button class="button button--dark prev-btn" disable="disable"
                                         (click)="playQuiz(false)">Previous</button>
-                                    <button class="button button--primary next-btn"
+                                    <button class="button button--primary next-btn" 
                                         (click)="playQuiz(false)">Next</button>
                                     <button class="button button--primary finish-btn" type="submit"
                                         (click)="playQuiz(true)">Finish</button>

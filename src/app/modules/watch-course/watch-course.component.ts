@@ -114,7 +114,7 @@ export class WatchCourseComponent implements OnInit {
                     if(data && data.success){
                       this.quickQuizs = data.data.quiz
                       this.quizScoreShow = data.data.quizScore;
-                      console.log("this.quizScoreShow",this.quizScoreShow)
+                      console.log("this.quickQuizs",this.quickQuizs)
                     }
                   })
                 }else{
@@ -148,7 +148,8 @@ export class WatchCourseComponent implements OnInit {
                     if(data && data.success){
                       this.quickQuizs = data.data.quiz
                       this.quizScoreShow = data.data.quizScore;
-                      console.log("this.quizScoreShow",this.quizScoreShow)
+                      //console.log("this.quizScoreShow",this.quizScoreShow)
+                      console.log("this.quickQuizs",this.quickQuizs)
                     }
                   })
                 }
@@ -170,6 +171,7 @@ export class WatchCourseComponent implements OnInit {
                 if(data && data.success){
                   this.quickQuizs = data.data.quiz
                   this.quizScoreShow = data.data.quizScore;
+                  console.log("this.quickQuizs",this.quickQuizs)
                 }
               })
             }
@@ -196,7 +198,7 @@ export class WatchCourseComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(()=>{
       this.loadScript();
-    },2000)
+    },5000)
   }
 
   loadMoreReviews(){
@@ -209,7 +211,7 @@ export class WatchCourseComponent implements OnInit {
       if(data && data.success){
         let reviewData = data.data.review;
         this.reviews = this.reviews.concat(data.data.review.data)
-        console.log(this.reviews)
+        //console.log(this.reviews)
         this.totalRecords = reviewData.total;
         this.totalPage = reviewData.last_page;
         let links = reviewData.links;
@@ -223,7 +225,7 @@ export class WatchCourseComponent implements OnInit {
   }
 
   playQuiz(isFinished:boolean){
-    this.loadScript();
+    //this.loadScript();
     if(isFinished){
       let userAnswers:any = [];
       this.quickQuizs.map((item:any)=>{
@@ -242,6 +244,9 @@ export class WatchCourseComponent implements OnInit {
         if(data && data.success){
           this.quizScoreShow = 1;
           this.toastr.success(data.message);
+          setTimeout(()=>{
+            window.location.reload();
+          },2000)
         }
       })
     }
@@ -402,7 +407,8 @@ export class WatchCourseComponent implements OnInit {
       if(data && data.success){
         this.quickQuizs = data.data.quiz
         this.quizScoreShow = data.data.quizScore;
-        console.log("this.quizScoreShow",this.quizScoreShow)
+        //console.log("this.quizScoreShow",this.quizScoreShow)
+        console.log("this.quickQuizs",this.quickQuizs)
       }
     })
     this.DefaultService.getVideoWatchHistory(quizParam).subscribe((outputRes)=>{
@@ -412,7 +418,7 @@ export class WatchCourseComponent implements OnInit {
         if(outputRes.data && outputRes.data.video_watch_report && outputRes.data.video_watch_report.seconds){
           startFrom = Number(outputRes.data.video_watch_report.seconds);
         }
-        console.log("this.videoWatchHistory",startFrom)
+        //console.log("this.videoWatchHistory",startFrom)
         this.watchVideo(data.video_url,startFrom);
       }
     })
@@ -423,16 +429,16 @@ export class WatchCourseComponent implements OnInit {
     })
   }
   watchVideo(videoUrl:string,startFrom:any){
-    console.log("videoUrl",videoUrl)
+    //console.log("videoUrl",videoUrl)
     let videoId:any = this.getVimeoId(videoUrl);
-    console.log("videoId",videoId)
+    //console.log("videoId",videoId)
     this.currentVimeoId = videoId;
     this.vimeoPlayer(videoId,startFrom);
   }
   vimeoPlayer(videoId:any,startFrom:any){
     var myDiv:any = document.getElementById("myDivID");
     myDiv.innerHTML = "";//remove all child elements inside of myDiv
-    console.log("startFrom",startFrom)
+    //console.log("startFrom",startFrom)
     if (this.player) {
       this.player.destroy();
     }
@@ -459,7 +465,7 @@ export class WatchCourseComponent implements OnInit {
         {
         
          
-            console.log('played the video!');
+            //console.log('played the video!');
         });
         this.player?.on('error', function() {
           console.log("error occured")
@@ -473,11 +479,11 @@ export class WatchCourseComponent implements OnInit {
             duration : data.duration,
           }
           this.DefaultService.updateVideoProgress(updateVideoData).subscribe((data)=>{})
-          console.log('progress the video!',data);
+          //console.log('progress the video!',data);
         });
       },2000)
       }catch(error){
-        console.log(78787878787)
+        //console.log(78787878787)
       }
       
     }
